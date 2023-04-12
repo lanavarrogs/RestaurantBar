@@ -1,3 +1,4 @@
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import axios from "axios"
 import useAuth from "../hooks/useAuth"
@@ -11,6 +12,7 @@ const Login = () => {
 
   const { setAuth } = useAuth();
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -20,11 +22,11 @@ const Login = () => {
 
     try{ 
 
-      const { data } = await axios.post('http://localhost:3000/api/auth/login',{username,password})
+      const { data } = await axios.post('http://localhost:3000/api/auth/signin',{username,password})
       if(data.token){
         localStorage.setItem('token',data.token)
         setAuth(data)
-        console.log(setAuth)
+        window.location.reload()
       }
 
     }catch(error){

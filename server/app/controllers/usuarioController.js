@@ -19,16 +19,15 @@ const crearUsuario = async (req,res ) => {
     usuario.token = generarId();
     const usarioAlmacenado = await usuario.save();
     res.json({msg: "Usuario creado correctamente", usarioAlmacenado: usarioAlmacenado});
-
   } catch (error) {
     console.log(error);
   }
 
 }
 
-const userBoard = async (req, res) => {
+const perfil = async (req, res) => {
   const { user } = req;
   res.status(200).json(user);
 }
 
-export { crearUsuario, userBoard }
+export { crearUsuario, perfil }

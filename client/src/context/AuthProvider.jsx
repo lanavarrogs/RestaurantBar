@@ -16,25 +16,26 @@ const AuthProvider = ({children}) => {
     
     const autenticarUsuario = async() => {
       const token = localStorage.getItem('token')
+    
       if(!token){
         setLoading(false)
+        console.log('no hay token')
         return
       }
 
-      
       const config = {
-        headers:{
-          "Accept" : "application/json"
-        },
-        session:{
-          "token": token
-        }
+       headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        } 
       }
-      
+
       try {
-        const { data } = await axios.post('https://vinipregati.onrender.com/api/user',config) 
+        const { data } = await axios.post('http://localhost:3000/api/usuarios/user',{},config) 
         setAuth(data)
-        navigate('/')
+        if(data.role === 'admin'){
+          navigate('/dashboard')
+        } 
       } catch (error) {
         setAuth({})
       }
@@ -48,7 +49,7 @@ const AuthProvider = ({children}) => {
   },[])
 
 
-  const logout = async () =>{
+  const cerrarSesionAuth = async () =>{
     
     try {
       const { data } = await axios.post('https://localhost:3000/api/auth/signout')
@@ -67,7 +68,7 @@ const AuthProvider = ({children}) => {
         auth,
         setAuth,
         loading,
-        logout
+        cerrarSesionAuth
       }}
     >
       {children}

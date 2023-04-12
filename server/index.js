@@ -6,6 +6,7 @@ import cors from 'cors'
 
 import usuarioRoutes from './app/routes/usuarioRoutes.js';
 import authRoutes from './app/routes/authRoutes.js'
+import menuRoutes from './app/routes/menuRoutes.js'
 
 const app = express();
 
@@ -27,6 +28,7 @@ connectDB();
 //Routing
 app.use("/api/auth",authRoutes);
 app.use("/api/usuarios",usuarioRoutes);
+app.use("/api/menu",menuRoutes);
 
 
 app.listen(PORT,() =>{

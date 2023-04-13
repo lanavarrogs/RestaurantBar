@@ -9,24 +9,26 @@ import RutaProtegida from './layouts/RutaProtegida'
 
 import { AuthProvider } from './context/AuthProvider'
 import { MenuProvider } from './context/MenuProvider'
+import { OrderProvider } from './context/OrdenProvider'
 
 function App() {
 
   return (
-    <BrowserRouter>
+  <BrowserRouter>
     <AuthProvider>
       <MenuProvider>
-        <Routes>
-          <Route path='/' element={<AuthLayout/>}>
-            <Route index element={<Login/>}/>
-          </Route>
-          <Route path="/dashboard" element={<RutaProtegida/>}>
-              
-          </Route>
-        </Routes>
-        </MenuProvider>
-      </AuthProvider>
-    </BrowserRouter>
+        <OrderProvider>
+          <Routes>
+            <Route path='/' element={<AuthLayout/>}>
+              <Route index element={<Login/>}/>
+            </Route>
+            <Route path="/dashboard" element={<RutaProtegida/>}>
+            </Route>
+          </Routes>
+        </OrderProvider>
+      </MenuProvider>
+    </AuthProvider>
+  </BrowserRouter>
   )
 }
 

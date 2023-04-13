@@ -8,6 +8,7 @@ const Header = () => {
   const handleCerrarSesion = () => {
         cerrarSesionAuth()
         localStorage.removeItem('token')
+        window.location.reload()
     }
   
 

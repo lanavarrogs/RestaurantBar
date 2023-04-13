@@ -6,7 +6,7 @@ import UserDashboard from "../pages/UserDashboard"
 const RutaProtegida = () => {
 
     const { auth,cargando } = useAuth()
-
+    
     if(cargando) return 'cargando...'
     return(
         <>

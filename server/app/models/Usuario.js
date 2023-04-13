@@ -13,6 +13,10 @@ const usuarioSchema = mongoose.Schema({
         required: true,
         trim: true
     },
+    nombre:{
+        type: String,
+        required: true,
+    },
     role: {
         type: String,
         enum: ['admin', 'user', 'gerente'],

@@ -3,13 +3,15 @@ import { useState } from 'react'
 import useOrden from '../hooks/useOrden'
 import Swal from 'sweetalert2'
 import useAuth from '../hooks/useAuth'
+import useSucursal from '../hooks/useSucursal'
 
 const Orden = () => {
   
   const { orderItems, removeItem, price,emptyOrder } = useOrden()
   const [ mesa, setMesa ] = useState(1)
-  const {auth} = useAuth() 
-
+  const { auth } = useAuth() 
+  const { sucursalSeleccionada } = useSucursal()
+  
   const handleEmptyOrder = () => {
     Swal.fire({
       title: 'Estas seguro que deseas cancelar?',
@@ -44,7 +46,9 @@ const Orden = () => {
     try{
       const pedidos = orderItems
       const nombreMesero = auth.nombre
-      const { data } = await axios.post('http://localhost:3000/api/orden/crearOrden',{nombreMesero,mesa,price,pedidos});
+      const  ubicacion = sucursalSeleccionada._id
+
+      const { data } = await axios.post('http://localhost:3000/api/orden/crearOrden',{ nombreMesero, mesa , price ,pedidos, ubicacion });
      
       if(data.mensaje === 'Orden creada correctamente'){
         Swal.fire({
@@ -55,7 +59,7 @@ const Orden = () => {
         
         emptyOrder()
       }
-
+      
     }catch(error){
       console.log(error)
     }

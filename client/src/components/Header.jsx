@@ -6,7 +6,6 @@ const Header = () => {
   const { auth,cerrarSesionAuth } = useAuth() 
   
   const handleCerrarSesion = () => {
-        cerrarSesionAuth()
         localStorage.removeItem('token')
         window.location.reload()
     }
@@ -20,10 +19,7 @@ const Header = () => {
             </h2>
 
             <div className='flex flex-col md:flex-row items-center gap-4'>
-                <Link
-                    to="/proyectos"
-                    className='font-bold uppercase'
-                >{auth.username}</Link>
+                <div className='font-bold uppercase'>{auth.username}</div>
 
                 <button
                     type="button"

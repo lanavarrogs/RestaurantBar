@@ -1,2 +1,0 @@
-
-db.ordens.find()

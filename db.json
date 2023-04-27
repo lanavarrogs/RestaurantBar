@@ -1,0 +1,32 @@
+//Usuario
+{"_id":{"$oid":"643467a663afb29717705385"},"username":"lanavarrog","password":"$2b$10$lxGueYCUdkorAtNRkwQbXeDeb94yO4gc.aopvNSYevlZ.MY2.ugGy","role":"admin","token":"1ei5bpprufo1gtmb9otf","__v":{"$numberInt":"0"},"nombre":"Luis Navarro"}
+
+
+
+
+//Productos
+
+{"_id":{"$oid":"6435fcb9b0a104132ec372ac"},"nombre":"Hamburguesa","tipo":"Platillo","precio":{"$numberInt":"120"},"disponibilidad":true,"descripcion":"Deliciosa hamburguesa con carne de res, lechuga, tomate, cebolla y queso americano.","imagen":"https://cdn.pixabay.com/photo/2019/04/22/08/37/burger-4145977_1280.jpg",}
+{"_id":{"$oid":"6435fcb9b0a104132ec372ad"},"nombre":"Pizza","tipo":"Platillo","precio":{"$numberInt":"150"},"disponibilidad":true,"descripcion":"Pizza casera recién horneada con salsa de tomate, queso mozzarella y tus ingredientes favoritos.","imagen":"https://cdn.pixabay.com/photo/2017/12/10/14/47/pizza-3010062_1280.jpg","ubicacion": []}
+{"_id":{"$oid":"6435fcb9b0a104132ec372ae"},"nombre":"Ensalada César","tipo":"Platillo","precio":{"$numberInt":"80"},"disponibilidad":true,"descripcion":"Ensalada fresca con lechuga, pollo a la parrilla, queso parmesano, crutones y aderezo César.","imagen":"https://cdn.pixabay.com/photo/2021/02/06/15/11/caesar-5988435_1280.jpg","ubicacion": []}
+
+
+
+{"_id":{"$oid":"6435fcb9b0a104132ec372af"},"nombre":"Nachos","tipo":"Platillo","precio":{"$numberInt":"100"},"disponibilidad":true,"descripcion":"Nachos crujientes con queso cheddar derretido, jalapeños, guacamole y crema agria.","imagen":"https://images.pexels.com/photos/8522746/pexels-photo-8522746.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","ubicacion": []}
+{"_id":{"$oid":"6435fcb9b0a104132ec372b0"},"nombre":"Margarita","tipo":"Bebida","precio":{"$numberInt":"70"},"disponibilidad":true,"descripcion":"Cóctel clásico hecho con tequila, triple sec, jugo de limón y sal en el borde del vaso.","imagen":"https://images.pexels.com/photos/1590151/pexels-photo-1590151.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","ubicacion": []}
+{"_id":{"$oid":"6435fcb9b0a104132ec372b1"},"nombre":"Piña colada","tipo":"Bebida","precio":{"$numberInt":"80"},"disponibilidad":true,"descripcion":"Bebida refrescante con ron, crema de coco, jugo de piña y hielo triturado.","imagen":"https://images.pexels.com/photos/10986589/pexels-photo-10986589.jpeg?auto=compress&cs=tinysrgb&w=1600","ubicacion": []}
+{"_id":{"$oid":"6435fcb9b0a104132ec372b2"},"nombre":"Cerveza","tipo":"Bebida","precio":{"$numberInt":"50"},"disponibilidad":true,"descripcion":"Cerveza fría de barril, perfecta para acompañar tus platillos favoritos.","imagen":"https://cdn.pixabay.com/photo/2017/06/24/23/41/beer-2439237_1280.jpg","ubicacion": []}
+{"_id":{"$oid":"6435fcb9b0a104132ec372b3"},"nombre":"Whiskey Sour","tipo":"Bebida","precio":{"$numberInt":"100"},"disponibilidad":true,"descripcion":"Cóctel clásico hecho con whiskey, jugo de limón y un toque de azúcar.","imagen":"https://images.pexels.com/photos/301692/pexels-photo-301692.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","ubicacion": []}
+{"_id":{"$oid":"6435fcb9b0a104132ec372b4"},"nombre":"Cuba Libre","tipo":"Bebida","precio":{"$numberInt":"90"},"disponibilidad":true,"descripcion":"Bebida refrescante con ron, cola y jugo de limón, servida con una rodaja de limón.","imagen":"https://images.pexels.com/photos/6930627/pexels-photo-6930627.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","ubicacion": []}
+{"_id":{"$oid":"6435fcb9b0a104132ec372b5"},"nombre":"Vodka Tonic","tipo":"Bebida","precio":{"$numberInt":"80"},"disponibilidad":true,"descripcion":"Cóctel refrescante hecho con vodka, agua tónica y una rodaja de limón.","imagen":"https://images.pexels.com/photos/616836/pexels-photo-616836.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}
+
+
+{"_id":{"$oid":"643f314116d97faf9403cf59"},"nombre":"San Rafael","direccion":"Sadi Carnot, 57","horario":"9:00-22:00","telefono":"800 000 0886"}
+{"_id":{"$oid":"623f1e5039d7a75afbcf9201"},"nombre":"La Condesa","direccion":"Av. Tamaulipas 231","horario":"8:00-20:00","telefono":"55 5555 5555"}
+
+"ubicacion": [ObjectId("643f314116d97faf9403cf59"), ObjectId("623f1e5039d7a75afbcf9201")]
+
+
+
+{"_id":{"$oid":"643f314116d97faf9403cf59"},"nombre":"San Rafael","direccion":"Sadi Carnot, 57","horario":"9:00-22:00","telefono":"800 000 0886"}
+{"_id":{"$oid":"623f1e5039d7a75afbcf9201"},"nombre":"La Condesa","direccion":"Av. Tamaulipas 231","horario":"8:00-20:00","telefono":"55 5555 5555"}

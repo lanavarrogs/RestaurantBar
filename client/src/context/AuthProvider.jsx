@@ -33,9 +33,7 @@ const AuthProvider = ({children}) => {
       try {
         const { data } = await axios.post('http://localhost:3000/api/usuarios/user',{},config) 
         setAuth(data)
-        if(data.role === 'admin'){
-          navigate('/dashboard')
-        } 
+        navigate('/dashboard') 
       } catch (error) {
         setAuth({})
       }
@@ -49,26 +47,12 @@ const AuthProvider = ({children}) => {
   },[])
 
 
-  const cerrarSesionAuth = async () =>{
-    
-    try {
-      const { data } = await axios.post('https://localhost:3000/api/auth/signout')
-      console.log(data)
-      localStorage.removeItem('token')
-      window.location.reload()
-    } catch (error) {
-      console.log(error)
-    }
-    
-  }
-
   return(
     <AuthContext.Provider
       value={{
         auth,
         setAuth,
         loading,
-        cerrarSesionAuth
       }}
     >
       {children}

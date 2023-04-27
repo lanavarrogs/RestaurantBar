@@ -24,6 +24,10 @@ const usuarioSchema = mongoose.Schema({
     },
     token: {
         type: String,
+    },
+    sucursal: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Sucursal'
     }
 });
 

@@ -9,17 +9,61 @@ const crearUsuario = async (req,res ) => {
   const existeUsuario  = await Usuario.findOne({ username });
 
   if(existeUsuario){
-     const error = new Error("El usuario ya existe");
-     return res.status(400).json({msg: error.message});
+    const error = new Error("El usuario ya existe");
+    return res.status(400).json({msg: error.message});
   }
 
-
   try {
-    const usuario = new Usuario(req.body);
+    const usuario = new Usuario(req.body)
+    console.log(usuario)
     usuario.token = generarId();
     const usarioAlmacenado = await usuario.save();
-    res.json({msg: "Usuario creado correctamente", usarioAlmacenado: usarioAlmacenado});
+    return res.status(200).json({msg: "Usuario creado correctamente"});
+
   } catch (error) {
+    console.log(error);
+  }
+
+}
+
+const listarUsuarios = async (req,res ) => {
+  try {
+    const usuarios = await Usuario.find({role:"gerente"});
+    return res.status(200).json(usuarios);
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+const obtenerUsuario = async (req,res ) => {
+  const { id } = req.params;
+  try {
+    const usuario = await Usuario.findById(id);
+    return res.status(200).json(usuario);
+  }catch(error){
+    console.log(error);
+  }
+}
+
+const editarUsuario = async (req,res ) => {
+  const { id } = req.params;
+  
+  const usuario = await Usuario.findById(id);
+
+  if(!usuario){
+    const error = new Error("El usuario no existe");
+    return res.status(400).json({msg: error.message});
+  }
+
+  usuario.username = req.body.nombreUsuario || usuario.username;
+  usuario.nombre = req.body.nombre || usuario.nombre;
+  usuario.role = req.body.tipoUsuario || usuario.role;
+  
+  try{
+    const usarioAlmacenado = await usuario.save();
+    res.json({msg: "Usuario actualizado correctamente"});
+  }catch(error){
     console.log(error);
   }
 
@@ -27,7 +71,7 @@ const crearUsuario = async (req,res ) => {
 
 const perfil = async (req, res) => {
   const { user } = req;
-  res.status(200).json(user);
+  return res.status(200).json(user);
 }
 
-export { crearUsuario, perfil }
+export { crearUsuario, perfil,listarUsuarios,obtenerUsuario,editarUsuario }

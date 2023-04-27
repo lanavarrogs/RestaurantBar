@@ -1,4 +1,6 @@
 import { useState, createContext, useEffect  } from "react";
+import axios from "axios";
+
 
 const OrderContext = createContext();
 
@@ -7,6 +9,7 @@ const OrderProvider = ({ children }) => {
 
     const [ totalOrder,setTotalOrder ] = useState(0)
     const [ price, setPrice  ] = useState(0)
+    const [ ordenes, setOrdenes] = useState([])
     
     const [ orderItems,setOrderItems ] = useState(() => {
         try{
@@ -17,6 +20,7 @@ const OrderProvider = ({ children }) => {
         }
     }); 
 
+
     useEffect(() => {
       localStorage.setItem('orderProducts', JSON.stringify(orderItems))
       let item = 0
@@ -26,6 +30,19 @@ const OrderProvider = ({ children }) => {
       setTotalOrder(item)
       getPrice()
     },[orderItems])
+
+    useEffect(() => {
+      const getOrders = async () => {
+        try{
+            const { data } =  await axios.get('http://localhost:3000/api/orden/obtenerOrdenes')
+            setOrdenes(data)
+        }catch(error){
+          console.log(error)
+        }
+      }
+      getOrders()
+
+    },[])
 
 
     const addItem = product => {
@@ -67,11 +84,25 @@ const OrderProvider = ({ children }) => {
       setOrderItems([])
     }
 
+
+    const getOrdersBySucursal = async (sucursal) => {
+      try {
+        const { data } = await axios.get(`http://localhost:3000/api/orden/obtenerOrdenes/${sucursal}`)
+        setOrdenes(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    
+    
+
     return(
     <OrderContext.Provider
       value={{
         orderItems,
         price,
+        totalOrder,
+        ordenes,
         setOrderItems,
         addItem,
         removeItem,

@@ -22,8 +22,12 @@ const ordenSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Producto'
     }],
+    ubicacion:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Sucursal'
+    }
     
-});
+},{collection: 'ordenes'});
 
 const Orden = mongoose.model('Orden', ordenSchema);
 export default Orden

@@ -9,7 +9,6 @@ const UsuarioProvider = ({ children }) => {
     const [usuario, setUsuario] = useState({});
 
     useEffect(() => {
-
         const obtenerUsuarios = async () => {
             try {
                 const token = localStorage.getItem('token');
@@ -29,7 +28,7 @@ const UsuarioProvider = ({ children }) => {
             }
         }
         obtenerUsuarios();
-    }, []);
+    },[usuarios]);
     
 
     const nuevoUsuario = async usuario => {
@@ -44,9 +43,6 @@ const UsuarioProvider = ({ children }) => {
                 }
             }
             const { data } = await axios.post('http://localhost:3000/api/usuarios/crearUsuario',usuario,config);
-            
-          
-
         } catch (error) {
             console.log(error);
         }
@@ -71,12 +67,38 @@ const UsuarioProvider = ({ children }) => {
         }
     }
 
+    const eliminarUsuario = async id => {
+        try {
+            const token = localStorage.getItem('token');
+            if(!token) return
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            }
+
+            const { data } = await axios.delete(`http://localhost:3000/api/usuarios/eliminarUsuario/${id}`,config);
+            if(data.msg === "Usuario eliminado correctamente"){
+                const usuariosFiltrados = usuarios.filter(usuario => usuario._id !== id)
+                console.log(usuariosFiltrados)
+                setUsuarios(usuariosFiltrados)
+            }
+
+        }catch (error){
+            console.log(error);
+        }
+    }
+
+
+
     return(
         <UsuarioContext.Provider value={{
             usuarios,
             usuario,
             nuevoUsuario,
             obtenerUsuario,
+            eliminarUsuario,
         }}>
             {children}
         </UsuarioContext.Provider>

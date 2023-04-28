@@ -57,5 +57,14 @@ const agregarProducto = async (req, res) => {
 }
 
 
+const eliminarProducto = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Producto.findByIdAndDelete(id);
+    return res.status(200).json({msg: "Producto eliminado correctamente"});
+  }catch(error){
+    console.log(error);
+  }
+}
 
-export { getProducts,obtenerProducto,agregarProducto,editarProducto }
+export { getProducts,obtenerProducto,agregarProducto,editarProducto,eliminarProducto }

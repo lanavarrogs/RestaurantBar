@@ -31,11 +31,17 @@ const SucursalProvider = ({children}) => {
         obtenerSucursalSeleccionada()
     },[sucursal])
 
+    const obtenerSeleccion = (id) => {
+        const value = sucursal.find(sucursal => sucursal._id === id)
+        return value.nombre
+    }
+
     return(
         <SucursalContext.Provider value={{
             sucursal,
             sucursalSeleccionada,
-            setSucursalSeleccionada
+            setSucursalSeleccionada,
+            obtenerSeleccion
         }}>
             {children}
         </SucursalContext.Provider>

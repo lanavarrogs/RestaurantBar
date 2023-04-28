@@ -1,5 +1,5 @@
 import express from 'express';
-import { crearUsuario, perfil, listarUsuarios, obtenerUsuario, editarUsuario } from '../controllers/usuarioController.js';
+import { crearUsuario, perfil, listarUsuarios, obtenerUsuario, editarUsuario, eliminarUsuario } from '../controllers/usuarioController.js';
 import { checkToken } from '../middleware/checkAuth.js';
 
 
@@ -11,5 +11,6 @@ router.post('/user',checkToken,perfil);
 router.get('/listarUsuarios',checkToken,listarUsuarios)
 router.get('/obtenerUsuario/:id',obtenerUsuario);
 router.put('/editarUsuario/:id',editarUsuario);
+router.delete('/eliminarUsuario/:id',checkToken,eliminarUsuario);
 
 export default router;

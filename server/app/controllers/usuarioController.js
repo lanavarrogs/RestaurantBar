@@ -28,7 +28,7 @@ const crearUsuario = async (req,res ) => {
 
 const listarUsuarios = async (req,res ) => {
   try {
-    const usuarios = await Usuario.find({role:"gerente"});
+    const usuarios = await Usuario.find({role:{ $ne: "admin" }});
     return res.status(200).json(usuarios);
   } catch (error) {
     console.log(error);
@@ -74,4 +74,14 @@ const perfil = async (req, res) => {
   return res.status(200).json(user);
 }
 
-export { crearUsuario, perfil,listarUsuarios,obtenerUsuario,editarUsuario }
+const eliminarUsuario = async (req,res ) => {
+  const { id } = req.params;
+  try {
+    await Usuario.findByIdAndDelete(id);
+    return res.status(200).json({msg: "Usuario eliminado correctamente"});
+  }catch(error){
+    console.log(error);
+  }
+}
+
+export { crearUsuario, perfil,listarUsuarios,obtenerUsuario,editarUsuario, eliminarUsuario }

@@ -21,7 +21,7 @@ const MenuProvider = ({ children }) => {
 
         obtenerProductos()
 
-    }, [])
+    }, [products])
 
     const obtenerProducto = async id => {
         try {
@@ -32,12 +32,36 @@ const MenuProvider = ({ children }) => {
         }
     }
 
+
+    const eliminarProducto = async id => {
+        try {
+            const token = localStorage.getItem('token');
+            if(!token) return
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            }
+
+            const { data } = await axios.delete(`http://localhost:3000/api/menu/eliminarProducto/${id}`,config);
+            if(data.msg === "Producto eliminado correctamente"){
+                const productosFiltrados = products.filter(usuario => usuario._id !== id)
+                setProducts(productosFiltrados)
+            }
+
+        }catch (error){
+            console.log(error);
+        }
+    }
+
     return(
         <MenuContext.Provider 
             value={{ 
                 products,
                 producto,
-                obtenerProducto 
+                obtenerProducto,
+                eliminarProducto 
             }}
          >{children}</MenuContext.Provider>
     )

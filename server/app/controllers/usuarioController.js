@@ -59,7 +59,8 @@ const editarUsuario = async (req,res ) => {
   usuario.username = req.body.nombreUsuario || usuario.username;
   usuario.nombre = req.body.nombre || usuario.nombre;
   usuario.role = req.body.tipoUsuario || usuario.role;
-  
+  usuario.password = req.body.password || usuario.password;
+   
   try{
     const usarioAlmacenado = await usuario.save();
     res.json({msg: "Usuario actualizado correctamente"});

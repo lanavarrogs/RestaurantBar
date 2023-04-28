@@ -12,6 +12,7 @@ const EditarUsuario = () => {
   const [alerta, setAlerta] = useState({})
   const [tipoUsuario, setTipoUsuario] = useState('')
   const [cargando, setCargando] = useState(true);
+  const [password, setPassword] = useState('')
 
   const { usuario, obtenerUsuario } = useUsuario()
   const params = useParams()
@@ -69,7 +70,7 @@ const EditarUsuario = () => {
         }
         
         
-        const { data } = await axios.put(`http://localhost:3000/api/usuarios/editarUsuario/${params.id}`,{nombre,nombreUsuario,tipoUsuario},config);
+        const { data } = await axios.put(`http://localhost:3000/api/usuarios/editarUsuario/${params.id}`,{nombre,nombreUsuario,tipoUsuario,password},config);
         
          if(data.error){
           setAlerta({
@@ -128,6 +129,20 @@ const EditarUsuario = () => {
                       placeholder="Nombre de Usuario"
                       value={nombreUsuario}
                       onChange={e => setNombreUsuario(e.target.value)}
+                  />
+              </div>
+              <div className="mb-5">
+                  <label
+                      className="text-gray-700 text-sm uppercase font-bold "
+                      htmlFor="password"
+                  >Ingresa una contraseña</label>
+                  <input
+                      id="password"
+                      type="password"
+                      className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                      placeholder="Contraseña"
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
                   />
               </div>
               <div className="mb-5">
